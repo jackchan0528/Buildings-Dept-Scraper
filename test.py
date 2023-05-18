@@ -31,6 +31,22 @@ def clickButtonByID(id):
     button.click()
 
 
+def clickButtonByCSS(cssString):
+    # Find the <a> element by its class attribute
+    button = driver.find_element(By.CSS_SELECTOR, cssString)
+
+    # Clicking the button
+    button.click()
+
+
+def clickButtonByClass(className):
+    # Find the <a> element by its class attribute
+    button = driver.find_element(By.CLASS_NAME, f"{className}")
+
+    # Clicking the button
+    button.click()
+
+
 def enterTextBoxByID(id, text):
     # Finding the textbox by its ID
     textbox = WebDriverWait(driver, 10).until(
