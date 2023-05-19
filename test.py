@@ -33,7 +33,9 @@ def clickButtonByID(id):
 
 def clickButtonByCSS(cssString):
     # Find the <a> element by its class attribute
-    button = driver.find_element(By.CSS_SELECTOR, cssString)
+    button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, cssString))
+    )
 
     # Clicking the button
     button.click()
@@ -41,7 +43,9 @@ def clickButtonByCSS(cssString):
 
 def clickButtonByClass(className):
     # Find the <a> element by its class attribute
-    button = driver.find_element(By.CLASS_NAME, f"{className}")
+    button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CLASS_NAME, f"{className}"))
+    )
 
     # Clicking the button
     button.click()
