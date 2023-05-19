@@ -1548,3 +1548,15 @@ JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 703: Error: Pha
 JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 703: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
 JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 703: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
 JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 703: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+1684468955909	geckodriver	INFO	Listening on 127.0.0.1:64765
+1684468958924	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "64766" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\User\\AppData\\Local\\Temp\\rust_mozprofilelujQb5"
+1684468959452	Marionette	INFO	Marionette enabled
+1684468959457	Marionette	INFO	Listening on port 64814
+Read port: 64814
+WebDriver BiDi listening on ws://127.0.0.1:64766
+1684468959591	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\User\\AppData\\Local\\Temp\\rust_mozprofilelujQb5\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:64766/devtools/browser/16ef0790-cf8e-4eef-8820-646791cc3394
+JavaScript error: https://www.bd.gov.hk/js/search/ordersearch.js, line 226: TypeError: searchNoticeNumber is null
+1684468961429	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: https://www.bd.gov.hk/js/jq_control.js, line 65: TypeError: $(...).position() is undefined

@@ -145,6 +145,7 @@ for street in df_streetName["English Address"]:
     arrow_IDs = [
         "individualCompiled-s28",
         "individualOutstanding-s28",
+        "individualCompiled-s24",
         "commonCompiled-s28",
         "commonOutstanding-s28",
         "individualOutstanding-s24",
@@ -180,6 +181,7 @@ for street in df_streetName["English Address"]:
         "commonCompiled-s28-content",
         "commonOutstanding-s28-content",
         "individualOutstanding-s24-content",
+        "individualCompiled-s24-content",
     ]
     for id in table_IDs:
         try:
