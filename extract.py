@@ -130,12 +130,12 @@ columns = ["街道地址", "位置", "命令狀態", "命令編號", "地址", "
 df_target = pd.DataFrame(columns=columns)
 
 # For each street name, click inside and extract info
-for street in df_streetName["English Address"]:
-    print(street)
+for street_itr in range(len(df_streetName["English Address"])):
+    print(df_streetName["English Address"][street_itr])
 
     while True:
         try:
-            clickButtonByCSS(f'a.btn.addressSearch[data-addressen="{street}"]')
+            clickButtonByCSS(f'a.btn.addressSearch[data-addressen="{df_streetName["English Address"][street_itr]}"]')
             break
         except:
             clickButtonByTitle("顯示更多")
@@ -172,7 +172,7 @@ for street in df_streetName["English Address"]:
             button.click()
         except:
             break
-    time.sleep(2)
+    time.sleep(0.5)
     # Find the table's div element by its ID
     # table_div = driver.find_element(By.ID, 'individualOutstanding-s24-content')
     table_IDs = [
@@ -214,7 +214,7 @@ for street in df_streetName["English Address"]:
                     val8 = table_strings[i + 1]
                     # Append records to the DataFrame using append method
                     record = {
-                        "街道地址": f"{street}",
+                        "街道地址": f"{df_streetName['街道地址'][street_itr]}",
                         "位置": f"{indiv_or_buildings}",
                         "命令狀態": f"{val3}",
                         "命令編號": f"{val4}",
