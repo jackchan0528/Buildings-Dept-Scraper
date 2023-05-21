@@ -11,6 +11,10 @@ input_street_name = input("Enter the target street name: ")
 # input_street_name = "鄉事會坊"
 # input_street_name = "大埔"
 
+excludeString = input("Enter the string to be excluded: ")
+# excludeString = "大埔道"
+# excludeString = "美雲樓"
+
 driver = webdriver.Firefox()
 driver.get(
     "https://www.bd.gov.hk/tc/resources/online-tools/orders-search/ordersearch.html"
@@ -123,6 +127,13 @@ df_streetName.columns = ["English Address", "Chinese Address"]
 df_streetName["街道地址"] = (
     df_streetName["English Address"] + " " + df_streetName["Chinese Address"]
 )
+
+# Exclude the string specified at excludeString, and reset the index
+df_streetName = df_streetName[~df_streetName["街道地址"].str.contains(excludeString)]
+df_streetName.reset_index(drop=True, inplace=True)
+
+# Print out how many streets to be scraped
+print(f"There are a total of {df_streetName.shape[0]} to be scraped.")
 
 # Initialize an empty DataFrame with column names
 df_target = pd.DataFrame()
@@ -257,3 +268,4 @@ for street_itr in range(len(df_streetName["English Address"])):
 
 # Write DataFrame to Excel file with sheet name
 df_target.to_excel("Extract.xlsx", sheet_name="extract", index=False)
+df_target.to_csv("Extract.csv", index=False)
