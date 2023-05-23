@@ -7,12 +7,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-input_street_name = input("Enter the target street name: ")
-# input_street_name = "廣福道"
+# input_street_name = input("Enter the target street name: ")
+input_street_name = "po heung"
 # input_street_name = "大埔"
 
-excludeString = input("Enter the string to be excluded: ")
-# excludeString = "大埔道"
+# excludeString = input("Enter the string to be excluded: ")
+excludeString = "大埔道"
 # excludeString = "美雲樓"
 
 driver = webdriver.Firefox()
@@ -147,10 +147,23 @@ df_target = pd.DataFrame(columns=columns)
 for street_itr in range(len(df_streetName["English Address"])):
     print(df_streetName["English Address"][street_itr])
 
+    # Set up a flag to skip the rest of the loop if needed
+    flag_skippable = 0
+
     while True:
         try:
             clickButtonByCSS(f'a.expandBtn.collapsed[data-address="{df_streetName["English Address"][street_itr]}"]')
-            clickButtonByCSS('a.btn.arrow.addressSearch')
+            # Find the label element by its CSS selector
+            label = driver.find_element(By.CSS_SELECTOR, 'label.radioContainer')
+
+            # Get the text content of the label element
+            text = label.text
+
+            # Check if the specific text is present
+            if "公共部份" in text:       
+                clickButtonByCSS('a.btn.arrow.addressSearch')
+            else:
+                flag_skippable = 1
             break
         except:
             clickButtonByTitle("顯示更多")
@@ -271,8 +284,9 @@ for street_itr in range(len(df_streetName["English Address"])):
     # df_target.loc[len(df_target)] = record
 
     # print(df_target)
-
-    clickButtonByID("backToSearch")
+    # Skip clicking "backToSearch" if the current loop is skippable
+    if flag_skippable == 0:
+        clickButtonByID("backToSearch")
     enterTextBoxByID("street_name", input_street_name)
     clickButtonByID("searchStreetAddress")
 
